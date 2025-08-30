@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sem Parar - TAG e Cartão para Pedágios | Oficial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis e reset */
+        :root {
+            --primary: #E30613;
+            --primary-dark: #C10510;
+            --secondary: #2C2C2C;
+            --gray: #F5F5F7;
+            --light: #FFFFFF;
+            --text: #333333;
+            --text-light: #6E6E73;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            gap: 0.5rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-large {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #1a1a1a;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        /* Header moderno */
+        header {
+            background-color: var(--light);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 42px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+
+        /* Hero section premium - SEM SOBREPOSIÇÃO VERMELHA */
+        .hero {
+            background: url('https://www.melhorescartoes.com.br/wp-content/uploads/2024/05/cartao-de-credito-sem-parar-capa-2048x1074.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Restante do CSS permanece igual... */
+        /* Features premium */
+        .features {
+            padding: 6rem 0;
+            background-color: var(--light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 6rem 0;
+            background-color: var(--gray);
+            position: relative;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(227, 6, 19, 0.3);
+        }
+
+        .step h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .step p {
+            color: var(--text-light);
+        }
+
+        .steps-connector {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            z-index: 1;
+        }
+
+        /* Credit Card Section */
+        .credit-card {
+            padding: 6rem 0;
+            background: linear-gradient(to right, #2C2C2C, #1a1a1a);
+            color: white;
+        }
+
+        .credit-card-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .credit-card-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .credit-card-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .credit-card-image img:hover {
+            transform: translateY(-10px);
+        }
+
+        .credit-card-content {
+            flex: 1;
+        }
+
+        .credit-card-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .credit-card-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .credit-card-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .credit-card-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .credit-card-features li i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Pricing premium */
+        .pricing {
+            padding: 6rem 0;
+            background-color: var(--light);
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .pricing-card {
+            background: linear-gradient(to bottom, var(--light), var(--gray));
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:before {
+            content: 'MAIS PEDIDO';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .price {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin: 1.5rem 0;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .price span {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2.5rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .pricing-features li i {
+            color: var(--primary);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials premium */
+        .testimonials {
+            padding: 6rem 0;
+            background: linear-gradient(to right, var(--secondary), #1a1a1a);
+            color: white;
+        }
+
+        .testimonials .section-title,
+        .testimonials .section-subtitle {
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.3;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+            border: 3px solid var(--primary);
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 0;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta .btn {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .cta .btn:hover {
+            background: black;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 6rem 0;
+            background-color: var(--gray);
+        }
+
+        .form-container {
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-header h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-header p {
+            color: var(--text-light);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.1);
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-check input {
+            margin-right: 0.8rem;
+        }
+
+        .form-submit {
+            grid-column: span 2;
+            text-align: center;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 0;
+            background-color: var(--light);
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 1.5rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .accordion-header {
+            background: var(--light);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .accordion-header:hover {
+            background: var(--gray);
+        }
+
+        .accordion-header i {
+            transition: var(--transition);
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            background: var(--light);
+        }
+
+        .accordion-content-inner {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .accordion-item.active .accordion-header {
+            background: var(--primary);
+            color: white;
+        }
+
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        /* Footer premium */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact li i {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: modalAppear 0.5s ease;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        /* Saldo TAG Section */
+        .saldo-tag {
+            padding: 6rem 0;
+            background: linear-gradient(to right, #2C2C2C, #1a1a1a);
+            color: white;
+            text-align: center;
+        }
+
+        .saldo-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .saldo-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .saldo-value {
+            font-size: 4rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin: 1rem 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .saldo-info {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Increase Limit Section */
+        .increase-limit-section {
+            padding: 6rem 0;
+            background-color: var(--gray);
+        }
+
+        .increase-limit-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .increase-limit-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .increase-limit-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .increase-limit-card p {
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        .increase-limit-form .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .increase-limit-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .increase-limit-form input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .increase-limit-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.1);
+        }
+
+        .card-number-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-icon {
+            margin-right: 0.8rem;
+            font-size: 1.5rem;
+            color: var(--text-light);
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .credit-card-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .credit-card-features li {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .header-actions {
+                order: 2;
+                margin-left: auto;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .steps-connector {
+                display: none;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 2.5rem;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .logo-text {
+                display: none;
+            }
+            
+            .saldo-value {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .pricing-card {
+                padding: 2rem;
+            }
+            
+            .saldo-value {
+                font-size: 2.5rem;
+            }
+            
+            .btn-large {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .increase-limit-card {
+                padding: 2rem;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* Efeito de máquina de escrever */
+        .typewriter {
+            overflow: hidden;
+            border-right: 0.15em solid var(--primary);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.05em;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://logodownload.org/wp-content/uploads/2018/02/sem-parar.png" alt="Sem Parar">
+                <div class="logo-text">SEM <span>PARAR</span></div>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#vantagens">Vantagens</a></li>
+                    <li><a href="#cartao">Cartão</a></li>
+                    <li><a href="#saldo">Saldo TAG</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                    <li><a href="#duvidas">Dúvidas</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#aumentar-limite" class="btn btn-outline">Aumentar Limite</a>
+                <a href="#solicitar" class="btn">Solicitar Agora</a>
+                <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i> OFERTA EXCLUSIVA
+            </div>
+            <h1>Passe por pedágios sem parar e com <span class="typewriter">total praticidade</span></h1>
+            <p>Adquira já seu cartão Sem Parar + TAG por apenas <strong>R$ 90,00</strong> e tenha mais agilidade no seu dia a dia</p>
+            <div class="hero-buttons">
+                <a href="#solicitar" class="btn btn-large"><i class="fas fa-credit-card"></i> Solicitar Agora</a>
+                <a href="#aumentar-limite" class="btn btn-secondary btn-large"><i class="fas fa-chart-line"></i> Aumentar Limite</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="vantagens">
+        <div class="container">
+            <h2 class="section-title animate">Vantagens do <span>Sem Parar</span></h2>
+            <p class="section-subtitle animate delay-1">Descubra por que mais de 5 milhões de brasileiros escolheram o Sem Parar</p>
+            <div class="features-grid">
+                <div class="feature-card animate delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Agilidade nos Pedágios</h3>
+                    <p>Passe pelos pedágios sem reduzir a velocidade e sem precisar parar para pagar.</p>
+                </div>
+                <div class="feature-card animate delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Economia de Tempo</h3>
+                    <p>Evite filas e ganhe tempo em suas viagens e deslocamentos diários.</p>
+                </div>
+                <div class="feature-card animate delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Segurança</h3>
+                    <p>Menor exposição ao levar menos dinheiro em espécie durante as viagens.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credit Card Section -->
+    <section class="credit-card" id="cartao">
+        <div class="container credit-card-container">
+            <div class="credit-card-image">
+                <img src="https://garagem360.com.br/wp-content/uploads/2024/05/cartao-de-credito-sem-parar-print-da-tela-garagem360.jpg" alt="Cartão Sem Parar">
+            </div>
+            <div class="credit-card-content">
+                <h2>Cartão de Crédito Sem Parar</h2>
+                <p>Além da TAG para pedágios, tenha um cartão de crédito with benefícios exclusivos e a possibilidade de aumentar seu limite conforme seu uso.</p>
+                
+                <ul class="credit-card-features">
+                    <li><i class="fas fa-check"></i> Aceito em estabelecimentos por todo o Brasil</li>
+                    <li><i class="fas fa-check"></i> Aumento de limite progressivo</li>
+                    <li><i class="fas fa-check"></i> App para controle de gastos</li>
+                    <li><i class="fas fa-check"></i> Sem anuidade</li>
+                </ul>
+                
+                <div class="hero-buttons">
+                    <a href="#solicitar" class="btn btn-large"><i class="fas fa-credit-card"></i> Solicitar Cartão</a>
+                    <a href="#aumentar-limite" class="btn btn-outline btn-large"><i class="fas fa-chart-line"></i> Aumentar Limite</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Saldo TAG Section -->
+    <section class="saldo-tag" id="saldo">
+        <div class="container saldo-container">
+            <h2 class="section-title">Seu investimento vira <span>crédito na TAG</span></h2>
+            <p class="section-subtitle">Os R$ 90,00 pagos na aquisição são convertidos em saldo para utilização nos pedágios</p>
+            
+            <div class="saldo-card">
+                <h3>Saldo Inicial da sua TAG</h3>
+                <div class="saldo-value">R$ 90,00</div>
+                <p class="saldo-info">Valor integralmente convertido em créditos para utilização em pedágios</p>
+                <a href="#solicitar" class="btn btn-large"><i class="fas fa-credit-card"></i> Solicitar Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works" id="como-funciona">
+        <div class="container">
+            <h2 class="section-title">Como <span>Funciona</span></h2>
+            <p class="section-subtitle">Em apenas 4 passos simples, você começa a aproveitar todos os benefícios</p>
+            
+            <div class="steps">
+                <div class="steps-connector"></div>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Solicite</h3>
+                    <p>Preencha o formulário de solicitação e pague o valor de adesão de R$ 90,00</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Receba</h3>
+                    <p>Você receberá o cartão Sem Parar e a TAG em sua casa</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Instale</h3>
+                    <p>Cole a TAG no para-brisa do seu veículo conforme as instruções</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Use</h3>
+                    <p>Passe pelos pedágios sem parar utilizando seu saldo de R$ 90,00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="planos">
+        <div class="container">
+            <h2 class="section-title">Nossos <span>Planos</span></h2>
+            <p class="section-subtitle">Escolha a opção que melhor se adapta às suas necessidades</p>
+            
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <h3>Cartão + TAG Sem Parar</h3>
+                    <div class="price">R$ 90,00 <span>valor de adesão</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check-circle"></i> TAG para pedágios com R$ 90,00 de saldo</li>
+                        <li><i class="fas fa-check-circle"></i> Cartão de crédito Sem Parar</li>
+                        <li><i class="fas fa-check-circle"></i> App para controle de gastos</li>
+                        <li><i class="fas fa-check-circle"></i> Atendimento 24h</li>
+                        <li><i class="fas fa-check-circle"></i> Sem anuidade</li>
+                        <li><i class="fas fa-check-circle"></i> Aumento de limite disponível</li>
+                    </ul>
+                    <a href="#solicitar" class="btn btn-large">Solicitar Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aumentar Limite Section -->
+    <section class="increase-limit-section" id="aumentar-limite">
+        <div class="container increase-limit-container">
+            <div class="increase-limit-card">
+                <h2>Aumentar Limite do Cartão</h2>
+                <p>Preencha os dados abaixo para solicitar o aumento de limite do seu cartão Sem Parar</p>
+                
+                <form class="increase-limit-form" id="increase-limit-form">
+                    <div class="form-group">
+                        <label for="card-number">Número do Cartão</label>
+                        <div class="card-number-group">
+                            <i class="fas fa-credit-card card-icon"></i>
+                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000" required maxlength="19">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expiry-date">Data de Vencimento</label>
+                        <input type="text" id="expiry-date" placeholder="MM/AA" required maxlength="5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone-number">Telefone para Contato</label>
+                        <input type="tel" id="phone-number" placeholder="(00) 00000-0000" required>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-large">
+                            <i class="fas fa-paper-plane"></i> Solicitar Aumento de Limite
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="solicitar">
+        <div class="container">
+            <h2 class="section-title">Solicite seu <span>Cartão + TAG</span></h2>
+            <p class="section-subtitle">Preencha o formulário abaixo e garanta já o seu</p>
+            
+            <div class="form-container">
+                <div class="form-header">
+                    <h3>Solicitação do Cartão Sem Parar</h3>
+                    <p>Preencha os dados abaixo para finalizar seu pedido</p>
+                </div>
+                
+                <form id="card-request-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle">Tipo de Veículo</label>
+                            <select id="vehicle" required>
+                                <option value="">Selecione...</option>
+                                <option value="car">Carro</option>
+                                <option value="motorcycle">Moto</option>
+                                <option value="truck">Caminhão</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="license-plate">Placa do Veículo</label>
+                            <input type="text" id"license-plate" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Endereço Completo</label>
+                            <input type="text" id="address" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">Aceito os termos e condições de uso</label>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-large">
+                            <i class="fas fa-check-circle"></i> Finalizar Solicitação - R$ 90,00
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="duvidas">
+        <div class="container">
+            <h2 class="section-title">Perguntas <span>Frequentes</span></h2>
+            <p class="section-subtitle">Tire suas dúvidas sobre o Sem Parar</p>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Como funciona o pagamento dos pedágios?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>O valor dos pedágios é debitado automaticamente do saldo da sua TAG Sem Parar. Quando o saldo estiver baixo, você pode recarregar através do app ou do site.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Os R$ 90,00 pagos na adesão são convertidos em crédito?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Sim! O valor de R$ 90,00 pago na aquisição do Sem Parar é convertido integralmente em saldo para utilização nos pedágios.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Como solicitar aumento de limite?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Você pode solicitar aumento de limite diretamente pelo app Sem Parar, na seção "Meu Limite". A análise é feita automaticamente considerando seu histórico de uso. Também é possível solicitar pelo site, clicando no botão "Aumentar Limite".</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Quanto tempo leva para receber o cartão e a TAG?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Após a confirmação do pagamento, o prazo de entrega is de até 10 dias úteis para todo o Brasil.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        A TAG funciona em quais praças de pedágio?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>A TAG Sem Parar é aceita em mais de 600 praças de pedágio em todo o Brasil, além de estacionamentos e outros serviços.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Sem Parar</h3>
+                    <p>A forma mais prática e eficiente de passar por pedágios, estacionamentos e muito mais.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Produtos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Cartão + TAG</a></li>
+                        <li><a href="#aumentar-limite"><i class="fas fa-chevron-right"></i> Aumentar Limite</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Recarregar TAG</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> App Sem Parar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Dúvidas Frequentes</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Fale Conosco</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Ouvidoria</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Pontos de Atendimento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i> 0800 123 4567</li>
+                        <li><i class="fas fa-envelope"></i> contato@semparar.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1000 - São Paulo/SP</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Sem Parar. Todos os direitos reservados. CNPJ: 12.345.678/0001-90</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 style="color: var(--primary); margin-bottom: 20px;">Solicitação Enviada!</h2>
+            <p>Sua solicitação foi recebida com sucesso. Em breve você receberá um e-mail com as instruções para ativação do seu cartão Sem Parar + TAG.</p>
+            <p>O valor de R$ 90,00 será convertido em saldo para utilização nos pedágios.</p>
+            <button class="btn" style="margin-top: 20px;">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Increase Limit Modal -->
+    <div class="modal" id="increase-limit-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 style="color: var(--primary); margin-bottom: 20px;">Solicitação de Aumento de Limite Enviada!</h2>
+            <p>Nossos atendentes entrarão em contato com você em alguns minutos para finalizar a solicitação.</p>
+            <button class="btn" style="margin-top: 20px;">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // Menu mobile
+        document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+        
+        // Form submission
+        document.getElementById('card-request-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('success-modal').style.display = 'flex';
+        });
+        
+        // Increase limit form submission
+        document.getElementById('increase-limit-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('increase-limit-modal').style.display = 'flex';
+        });
+        
+        // Close modals
+        document.querySelectorAll('.close-modal').forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('success-modal').style.display = 'none';
+                document.getElementById('increase-limit-modal').style.display = 'none';
+            });
+        });
+        
+        // FAQ accordion
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+        
+        // CPF mask
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 9) {
+                value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            } else if (value.length > 6) {
+                value = value.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3');
+            } else if (value.length > 3) {
+                value = value.replace(/(\d{3})(\d+)/, '$1.$2');
+            }
+            e.target.value = value;
+        });
+        
+        // Phone mask
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 10) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (value.length > 6) {
+                value = value.replace(/(\d{2})(\d{4})(\d+)/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/(\d{2})(\d+)/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+        
+        // Phone mask for increase limit form
+        const phoneIncreaseInput = document.getElementById('phone-number');
+        phoneIncreaseInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 10) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (value.length > 6) {
+                value = value.replace(/(\d{2})(\d{4})(\d+)/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/(\d{2})(\d+)/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+        
+        // License plate mask
+        document.getElementById('license-plate').addEventListener('input', function(e) {
+            let value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+            if (value.length > 7) value = value.slice(0, 7);
+            
+            if (value.length > 3) {
+                value = value.replace(/([A-Z0-9]{3})([A-Z0-9]+)/, '$1-$2');
+            }
+            e.target.value = value;
+        });
+        
+        // Card number mask
+        document.getElementById('card-number').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 16) value = value.slice(0, 16);
+            
+            // Add space after every 4 digits
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+            e.target.value = value;
+        });
+        
+        // Expiry date mask
+        document.getElementById('expiry-date').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 4) value = value.slice(0, 4);
+            
+            if (value.length > 2) {
+                value = value.replace(/(\d{2})(\d+)/, '$1/$2');
+            }
+            e.target.value = value;
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.feature-card, .section-title, .section-subtitle').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
